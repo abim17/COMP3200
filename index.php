@@ -1,4 +1,5 @@
-<?php require('assets/templates/header.php'); ?>
+<?php require('includes/header.php'); ?>
+
     <!-- MAPS JAVASCRIPT -->
     <style type="text/css">
       html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
@@ -25,18 +26,10 @@
     }
     </style>
 
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h3>Pick your destination</h3>
-              
-                       <a href='chooseCity.php'>Change hometown</a>  
-                </div>
+          
        
-            </div><!-- /row -->
-        </div> <!-- /container -->
 
+</div>
     <script type="text/javascript">
         function initialize() {
         
@@ -96,4 +89,4 @@
 
     <div id="map-canvas"></div>
   
-<?php require('assets/templates/footer.php'); ?>
+<?php require('includes/footer.php'); ?>

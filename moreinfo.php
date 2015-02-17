@@ -1,88 +1,50 @@
-<?php require('assets/templates/header.php');
- require_once("city.class.php");	 ?>
+<?php require('includes/header.php'); 
+ require_once("classes/city.class.php");  
+ $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string($_GET['id']))->fetch_object('City'); ?>
 
-<?php 
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1><?=$city->name?></h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
 
-$city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string($_GET['id']))->fetch_object('City');
+    <div class="container textcontent">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
 
+      <hr>
 
-
-?>
-<div id="headerwrap">
-	    <div class="container">
-	    		<div class="row left">
-				
-				<a class="btn btn-primary" id="moreInfo" href="index.php">MAP</a> > <?=$city->name?>
-			</div>
-			<div class="row">
-				<div class="col-lg-12 col-lg-offset-2 left">
-						<h1><?=$city->name?></h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4 left col-lg-offset-2">
-						<?php
-						$ratings = $city->getRatings();
-						$total = 0;
-						foreach($ratings as $rating) {
-						  $total = $total + $rating;
-						}
-						$ratingScore =  round($total/count($ratings));
-						for($i = 1; $i <= $ratingScore; $i++){
-							echo('<img src="assets/img/star.png" class="rating">');
-						}
-					?>
-
-						<h5><?=$city->description?></h5>
-						<br>
-					<h5>Visited <?=$city->name?>? <a class="btn btn-primary" id="moreInfo" href="moreinfo.php?id=<?=$id?>">Rate it</a></h5>
-
-						<a class="btn btn-primary" id="moreInfo" href="travelInfo.php?id=<?=$city->id?>">I want to visit</a>
-					<br>
-								
-				</div>
-				<div class="col-lg-4 col-lg-offset-1 himg">
-					
-					<img src="<?=$city->img?>" class="img-responsive">
-					<br>
-				</div>
-			</div><!-- /row -->
-	    </div> <!-- /container -->
-	</div><!-- /headerwrap -->
-
-	<!-- *****************************************************************************************************************
-	 SERVICE LOGOS
-	 ***************************************************************************************************************** -->
-	 <div id="service">
-
-	 	<div class="container">
-	 		
- 			<div class="row centered">
- 				<h2>Attractions</h2>
- 				<br>
- 				<?php include('travel.php'); ?>
- 								
-	 		</div>
-	 	</div><! --/container -->
-	 </div><! --/service -->
-
-	<!-- *****************************************************************************************************************
-	 MIDDLE CONTENT
-	 ***************************************************************************************************************** -->
-
-	 <div class="container">
-	 	<div class="row centered">
-	 		
-		 		<h2 >Talk on Twitter</h2>
-		 		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
- 				
-	 	
-	 		
-	 		
-	 		
-	 	</div><! --/row -->
-	 </div><! --/container -->
-	 
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
+    </div> <!-- /container -->
 
 
-<?php require('assets/templates/footer.php'); ?>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

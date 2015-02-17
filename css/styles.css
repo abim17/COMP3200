@@ -1,0 +1,61 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+
+  padding-bottom: 20px;
+  background-image: url('../images/student-travel.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: #484950;
+ color: black;
+}
+.jumbotron{
+	background-color: #FFC266;
+	color: black;
+}
+@font-face{
+	/* http://www.dafont.com/gourdie-cursive.font?text=Your+Tri%5B */
+    font-family: "GCursiv2";
+    src: url('GCursiv2.ttf');
+}
+.textcontent{
+	 color: #E0E0D1;
+}
+
+
+.form{
+	background-color: #FFC285;
+	border-radius: 10px 10px 10px 10px;
+}
+.content{
+	margin-top: 120px;
+
+}
+#title{
+	font-family: "GCursiv2";
+	color: #FF9933;
+	font-size: 72px;
+}
+a{
+	color: black;
+	text-decoration: none;
+}
+a:hover{
+	color: #FFA347;
+	text-decoration: none;
+}
+#icon{
+	width:40px;
+	height:40px;
+	position: fixed;
+    top: 20px; 
+}
+#navshape{
+	padding-top: 15px;
+	background-color: #D2D1D1;
+	/* http://www.chickensmoothie.com/Forum/viewtopic.php?f=65&t=2023377 */
+	background-image: url('../images/city_banner.png');
+	color: #FF9933;
+
+
+
+}
