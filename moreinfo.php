@@ -16,6 +16,7 @@ $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string(
             $ratingScore =  round($total/count($ratings));
             for($i = 1; $i <= $ratingScore; $i++){
               echo('<img src="images/star.png" class="rating">');
+              //http://png-1.findicons.com/files/icons/2166/oxygen/48/rating.png
 
             }
           ?> 
@@ -58,30 +59,26 @@ $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string(
       </div>
     </div>
 
-    <div class="container textcontent">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
+    <div class="container textcontent"><div class="row">
+      <?php include('partials/travel.php'); ?>
+    </div>
+   
 
       <hr>
+      <div class="row">
+        <div class="col-md-4">
+          <img  src="images/bubble.png">
+          <?php include('partials/twitter.php'); 
+          //http://img1.wikia.nocookie.net/__cb20130401132639/warriorcatclansrp/images/3/3f/Illustration_of_a_cartoon_speech_bubble.png
+          ?>
 
+        
+        </div>
+      </div>
+    </div>
+       <hr>
       <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; Abigail Mills 2015</p>
       </footer>
     </div> <!-- /container -->
 
