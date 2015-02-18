@@ -11,8 +11,8 @@
 
 		public function getRatings()
 		{
-			require('assets/templates/db.php'); 
-			require_once('ratings.class.php');
+			require('includes/db.php'); 
+			require_once('classes/ratings.class.php');
 		
 			// get all roles for this film
 			$ratings = $data->query('SELECT * FROM cityRatings WHERE cityId = '.$this->id);
