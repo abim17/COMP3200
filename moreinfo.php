@@ -7,6 +7,16 @@ $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string(
       <div class="container text-center">
 
         <h2><?=$city->name?></h2>
+         <?php
+              
+              if(isset($_SESSION['rated'])&& $_SESSION['rated']=='true'){
+                  //prints out a success message
+                  echo "<div class='alert alert-success'>Thank you for rating</div>";
+                  unset($_SESSION['rated']);
+                }else{
+                  echo'hi';
+                }
+               ?>
         <?php
             $ratings = $city->getRatings();
             $total = 0;
@@ -21,7 +31,7 @@ $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string(
             }
           ?> 
 
-        <div class="row spacing">
+        <div class="container spacing">
           <div class="col-md-6">
                 <h4 class="description"><?=$city->description?></h4>
                 <br>
@@ -40,7 +50,7 @@ $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string(
               <h3>Step 2</h3>
               <label for="exampleInputName2">Enter a departure time:</label><br>
               <input type="text" class="form-control" id="exampleInputName2" placeholder="24 Hour Clock">
-            
+              
             <br><br>
               <button type="submit" class="btn btn-default btn-lg">I want to visit</button>
             </div>
@@ -51,7 +61,22 @@ $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string(
              
           </div>
           <div class="col-md-6">
-            <a class="btn btn-default btn-lg btnrate" href="moreinfo.php?id=<?=$id?>">Rate <?=$city->name?></a>
+            <a class="btn btn-default btn-lg btnrate" onclick="rate()">Rate <?=$city->name?></a>
+            <form name="myform" class="vis" id="rate" action="rate.php" method="POST">
+                <input type="radio" name="rate" value="1" checked>1
+                <input type="radio" name="rate" value="2">2
+                <input type="radio" name="rate" value="3">3
+                <input type="radio" name="rate" value="4">4
+                <input type="radio" name="rate" value="5">5
+                <input type="hidden" name="city" value="<?=$city->id?>">
+                <input class="btn btn-default" type="submit" value="submit">
+              </form>
+
+               <script>
+                function rate(results){
+                  $('#rate').toggle();
+                }
+                </script>
             <br>
               <img src="<?=$city->img?>" class="image">
           </div>
@@ -59,15 +84,29 @@ $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string(
       </div>
     </div>
 
-    <div class="container textcontent"><div class="row">
+    <div class="container textcontent">
+      <div class="container_12">
+  
+  
+        
+
       <?php include('partials/travel.php'); ?>
+
+      <script>
+
+
+   function clicked(results){
+        var toggle = "#"+results;
+        console.log(toggle);
+         $(toggle).toggle();
+      }
+      </script>
     </div>
    
 
-      <hr>
-      <div class="row">
-        <div class="col-md-4">
-          <img  src="images/bubble.png">
+
+      <div class="container_12">
+     
           <?php include('partials/twitter.php'); 
           //http://img1.wikia.nocookie.net/__cb20130401132639/warriorcatclansrp/images/3/3f/Illustration_of_a_cartoon_speech_bubble.png
           ?>
@@ -76,11 +115,7 @@ $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string(
         </div>
       </div>
     </div>
-       <hr>
-      <footer>
-        <p>&copy; Abigail Mills 2015</p>
-      </footer>
-    </div> <!-- /container -->
+    <?php include('includes/footer.php');?>
 
 
     <!-- Bootstrap core JavaScript

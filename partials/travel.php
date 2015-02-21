@@ -37,35 +37,44 @@
   }
 
   function callback(results, status) {
-  
+    
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-      html = '<ul>';
+      html = '';
       for (var i = 0; i < 3; i++) {
         if (typeof results[i] !== 'undefined') {
-        
-          html += '<div class="col-md-4"><h2>' 
+         var img='<img src="images/no-image.png" class="opacity" >'; 
+          if(results[i].photos !== undefined){
+            img ='<img src="'+results[i].photos[0].getUrl({'maxWidth': 300, 'maxHeight': 400})+'" class="opacity" alt="">'; 
+          }
+          html += '<div class="grid_4">' +
+          '<div class="banner">'+ img + '<div class="label"> <div class="title activities">'
           + results[i].name 
-          + '</h2><dl class="left wordwrap dl-horizontal"><dt>Rating</dt><dd>This attraction has been rated '
+          + '</div><div class="activities price">of 5<span>'+results[i].rating+'</span></div><br><button class="btn btn-default" onclick="clicked('+"'"+i+"a'"+')">Learn More</button></div></div><div class="vis activities" id="'+i+'a">'+results[i].formatted_address+'</div></div>';
+          /*<dl class="left wordwrap dl-horizontal"><dt>Rating</dt><dd>This attraction has been rated '
           +results[i].rating+' out of a possible 5.</dd> <dt>Address</dt><dd>'
           +results[i].formatted_address+'</dd><dt>Type</dt><dd>'
-          +results[i].types+'</dd></dl></div>';
-          /*<dt>Photos</dt><dd>'
+          +results[i].types+'</dd></dl></div>'+
+          '<dt>Photos</dt><dd>'
           +'<img src="'+results[i].photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200})+'">'
-          +'</dd>*/
+          +'</dd>'*/
+         
         }
         //get extra details
         //console.log(results[i]);
+        
       }
-      html += '</ul>';
+      html += '';  
       $('#item-list').html(html);
     }
   }
   google.maps.event.addDomListener(window, 'load', getItems);
+
+       
+
 </script>
 <!-- GOOGLE PLACES SEARCH PAGE ONE -->
 
 <!-- https://forums.html5dev-software.intel.com/viewtopic.php?f=28&t=1898 -->
 <div id="item-list"></div>
 <div id="map" style="visibility:hidden;"></div>
-
 

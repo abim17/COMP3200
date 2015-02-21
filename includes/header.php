@@ -16,6 +16,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+     <link href="css/skeleton.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
     <?php require('includes/db.php'); ?>
   </head>
@@ -25,7 +26,7 @@
     <nav class="navbar navbar-fixed-top" id="navshape">
       <div class="row">
         <div class="col-md-8 col-md-offset-1">
-          <div class="container text-center">
+          <div class="container">
              <a id="title" href="index.php">Student traveller</a>
              <!--http://www.iconsdb.com/white-icons/train-icon.html-->
               <img id="icon" src='images/train.png'>

@@ -5,10 +5,98 @@ body {
   background-color: #484950;
 
 }
+#ratingdiv{overflow:hidden}
+#ratingdiv .undone, #ratingdiv .fade{
+background:url("star.gif") -30px 0 no-repeat;
+width:28px;
+display:block;
+height:30px;
+float:left;
+margin-right:4px;
+text-indent:-99999px
+}
+#ratingdiv .done{
+background:url("star.gif") no-repeat;
+width:28px;
+display:block;
+height:30px;
+float:left;
+margin-right:4px;
+text-indent:-99999px
+}
+#ratingdiv .undone:hover{background-position:0}
+.vis{
+	display: none;
+}
+
+/*.opacity{
+	opacity: 0.6;
+}*/
+.banner {
+    top: -45px;
+    position: relative;
+
+}
+
+.banner .label {
+    color: #fff;
+    white-space: normal;
+    position: absolute;
+    text-align: center;
+    left: 0;
+    top: 40%;
+    margin-top: -38px;
+    right: 0;
+    
+}
+
+
+.banner .label .title {
+    font-size: 30px;
+    margin-bottom: 14px;
+   
+    
+}
+.activities{
+	background-color: rgba(72, 73, 80, 0.7);
+	color: #FF9933;
+	border-radius: 5px;
+}
+
+.banner .label .price span {
+    display: block;
+    font-size: 24px;
+    padding-top: 3px;
+}
+
+.banner a {
+    font-size: 14px;
+    line-height: 20px;
+    color: #c73430;
+
+    display: inline-block;
+    background-color: #e5e5e5;
+    padding: 5px 18px 4px;
+    margin-top: 25px;
+    border-radius: 13px;
+}
+
+.banner a:hover {
+    background-color: #c73430;
+    color: #fff;
+}
 .bubble{
-	position:absolute; top:50px; left:40px;
-	color: #484950;
+	/*https://g.twimg.com/Twitter_logo_blue.png*/
+	background-image:url('../images/twitter-big.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-color: #E6A665;
+	border-radius: 30px;
+	padding: 40px 40px 40px 40px;
+	margin-top: 80px;
 	text-align: center;
+	color: #484950;
+
 }
 .image{
 	height:500px;
@@ -22,7 +110,7 @@ body {
 }
 .description{
 	background-color: #484950;
-	color:#BCBCBC;
+	color: #E0E0D1;
 	padding: 10px 10px 10px 10px;
 	border: 2px solid;
     border-radius: 25px;

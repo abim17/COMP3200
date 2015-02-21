@@ -8,11 +8,11 @@
         endwhile;
     ?> 
     
-  <div class="row">
+  <div class="row jumbotron">
               <div class="col-md-4 form col-md-offset-4">
 
           
-          <h1 >Select your home city</h1>
+          <h3 >Select your home city</h3>
       
    
        
@@ -33,5 +33,6 @@
             <input class="btn btn-default" type="submit" value="submit">
           </form>
        </div>
-</div>
+     </div>
+ <div class="container textcontent">
 <?php require('includes/footer.php'); ?>
