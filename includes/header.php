@@ -17,28 +17,45 @@
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
      <link href="css/skeleton.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script>
-    <?php require('includes/db.php'); ?>
+    <script src="js/bootstrap.min.js">
+   </script>
+  
   </head>
 
   <body>
 
-    <nav class="navbar navbar-fixed-top" id="navshape">
-      <div class="row">
+<script src="js/jquery.zweatherfeed.min.js" type="text/javascript"></script>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    
+    <?php require('includes/db.php'); ?>
+
+    <nav class="navbar" id="navshape">
+ 
         <div class="col-md-8 col-md-offset-1">
-          <div class="container">
+     
              <a id="title" href="index.php">Student traveller</a>
              <!--http://www.iconsdb.com/white-icons/train-icon.html-->
               <img id="icon" src='images/train.png'>
           </div>
-        </div>
+     
   
             <div class="col-md-2 col-md-offset-1">
                 <h4>Hometown changed?</h4>
                    <a class="btn btn-default" href='chooseCity.php'>Change hometown</a>  
             </div>
-        </div>
+     
     </nav>
+
     <div class="content">
 
-
+<script>
+(document).ready(function(){
+  
+  //Click event to scroll to top
+  $('.scrollToTop').click(function(){
+    $('html, body').animate({scrollTop : 0},800);
+    return false;
+  });
+  
+});
+</script>

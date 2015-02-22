@@ -17,7 +17,7 @@ function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oa
 $connection = getConnectionWithAccessToken($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
 
 $tweets = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q=tomorrow+AND+event+AND+<?=$city->name?>&result_type=recent&count=2");
-$tweets1 = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q=weekend+AND+event+AND+<?=$city->name?>&result_type=recent&count=2");
+$tweets1 = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q=weekend+AND+<?=$city->name?>&result_type=recent&count=2");
 
  echo "   <div class='col-md-4'><div class='bubble'><h3>Tomorrow</h3>";
 for ($i = 0; $i < 2; $i++) {

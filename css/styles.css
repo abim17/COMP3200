@@ -5,6 +5,70 @@ body {
   background-color: #484950;
 
 }
+.weatherFeed {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 90%;
+	
+	color: #ccc;
+
+}
+.days{
+	border-radius: 3px;
+	border: #FFE0B2 solid 2px;
+}
+.weatherFeed a { color: #888;  }
+.weatherFeed a:hover {
+	color: #eee;
+	text-decoration: none;
+}
+.weatherItem {
+	padding: 0.8em;
+	text-align: right;
+}
+.weatherCity { text-transform: uppercase; color: #000; }
+.weatherTemp {
+	font-size: 2.8em;
+	font-weight: bold;
+	color: #eee;
+
+}
+.weatherDesc, .weatherCity { font-weight: bold; }
+.weatherDesc { margin-bottom: 0.4em; color: #eee; }
+.weatherRange, .weatherWind { font-size: 0.8em; }
+
+
+.vertical {  
+	position:relative;
+	overflow:hidden;	
+	height: 160px;	 
+	width: 280px;
+	border: 4px solid #555;
+	background: #222 url('bg.jpg') repeat-x;
+}
+
+.items {
+	position:absolute;
+	height:20000em;	
+	margin: 0px;
+}
+.items div.weatherItem { height: 160px; }
+
+.navi {
+	width:288px;
+	height:20px;
+}
+.navi a {
+	width:8px;
+	height:8px;
+	float:left;
+	margin:3px;
+	background: url('navigator.png') 0 0 no-repeat;
+	display:block;
+	font-size:1px;
+}
+.navi a:hover { background-position:0 -8px; }
+.navi a.active { background-position:0 -16px; }
+
 #ratingdiv{overflow:hidden}
 #ratingdiv .undone, #ratingdiv .fade{
 background:url("star.gif") -30px 0 no-repeat;
@@ -105,8 +169,8 @@ text-indent:-99999px
 .spacing{
 	margin-top: 30px;
 }
-.btnrate{
-	width:54%;
+.rate{
+	width:70%;
 }
 .description{
 	background-color: #484950;
@@ -115,6 +179,11 @@ text-indent:-99999px
 	border: 2px solid;
     border-radius: 25px;
 
+}
+.easysteps{
+	height: 100%;
+	width: 100%;
+	padding: 5px 5px 5px 5px;
 }
 .rating{
 		width: 30px;
@@ -132,7 +201,28 @@ text-indent:-99999px
     color: #484950;
     font-weight: 300;
     margin-bottom: 20px;
-    text-transform: uppercase;
+ 
+}
+.scrollToTop, .scrollToTop:visited{
+	width:100px; 
+	height:60px;
+	padding:10px; 
+	text-align:center; 
+	font-weight: bold;
+	background-color: #484950;
+	color: #FF9933;
+	border: solid 2px  #E0E0D1;
+	text-decoration: none;
+	border-radius: 10px;
+	position:fixed;
+	bottom:40px;
+	right:40px;
+
+
+}
+.scrollToTop:hover{
+	text-decoration:none;
+	background-color: #E0E0D1;
 }
 @font-face{
 	/* http://www.dafont.com/gourdie-cursive.font?text=Your+Tri%5B */
@@ -148,10 +238,7 @@ text-indent:-99999px
 	background-color: #FFC285;
 	border-radius: 10px 10px 10px 10px;
 }
-.content{
-	margin-top: 120px;
 
-}
 #title{
 	font-family: "GCursiv2";
 	color: #FF9933;
@@ -168,8 +255,8 @@ a:hover{
 #icon{
 	width:40px;
 	height:40px;
-	position: fixed;
-    top: 20px; 
+	position: relative;
+    top: -40px; 
 }
 #navshape{
 	padding-top: 15px;
@@ -177,7 +264,5 @@ a:hover{
 	/* http://www.chickensmoothie.com/Forum/viewtopic.php?f=65&t=2023377 */
 	background-image: url('../images/city_banner.png');
 	color: #FF9933;
-
-
-
+	margin-bottom: 0px;
 }
