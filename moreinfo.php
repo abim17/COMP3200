@@ -2,9 +2,13 @@
 session_start();
 require('includes/header.php'); 
  require_once("classes/city.class.php");  
+  if(!isset($_COOKIE['homeCity'])){
+      header('Location: chooseCity.php');
+    }
 $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string($_GET['id']))->fetch_object('City');?>
 
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Playball|Open+Sans+Condensed:300,700" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
  
     <div class="jumbotron">
       <div class="container">
@@ -26,6 +30,40 @@ $city = $data->query('SELECT * FROM city WHERE id = '.$data->real_escape_string(
               }
             ?> 
         </div>
+         <form class="form-inline" method="post" action="selectdate.php">
+                <br>
+                <div class="col-md-3 col-md-offset-1">
+                 
+                  <label>Departure date</label>
+                  <input id="datepicker" class="form-control" name="datepicker"></input>
+                  <script>
+                  $( "#datepicker" ).datepicker();
+                  </script>
+                </div>
+                <div class="col-md-3">
+                
+                  <label>Departure time</label>
+                  <input type="text" class="form-control" name="time" placeholder="e.g. 0900">
+                </div>
+               <div class="col-md-4">
+                  <input type="hidden" name="to" value="<?=$city->name?>">
+                  <input type="hidden" name="city" value="<?=$city->id?>">
+                  <button type="submit" class="btn btn-default">I want to visit</button>
+                    <?php 
+                    if(isset($_SESSION['dateselected'])&& $_SESSION['dateselected']=='true'){
+                      echo('<a target="_blank" href="'.$_SESSION['train'].'"class="btn btn-success" type="submit">Trains found!</a>');
+                      
+                      unset($_SESSION['dateselected']);
+                    }
+
+
+                    ?>
+              </div>
+              <br>
+        </form> 
+        <br>
+        
+        
         <div class="container spacing">
           <div class="col-md-5 col-md-offset-1">
                 <h4 class="description"><?=$city->description?></h4>
