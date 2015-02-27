@@ -1,4 +1,7 @@
-<?php require('includes/header.php'); ?>
+<?php 
+session_start();
+require('includes/header.php'); 
+?>
 
  <?php 
        $query = $data->query("SELECT * FROM city"); 
@@ -7,11 +10,19 @@
             $city_data[] = $city; 
         endwhile;
     ?> 
-    
+       
   <div class="jumbotron"> 
+    <?php 
+                    if(isset($_SESSION['error'])){
+                      echo('<div class="text-center alert alert-danger">'.$_SESSION['error'].'</div>');
+                      
+                      unset($_SESSION['error']);
+                    }
 
+
+                    ?>
           <h2 class="text-center">Making travel easy</h2>
-        
+      
     <div class="row">
       <div class="col-md-6 col-md-offset-1">
         <h3>3 easy steps</h3>
@@ -28,7 +39,7 @@
         
          <div class="col-md-3">
           <div class="col-md-12">
-            <h3>Select you city</h3>
+            <h3>Select your city</h3>
           </div>
             <form name="myform" action="processCity.php" method="POST">
 
@@ -39,8 +50,9 @@
                         //gets all the details of the selected city
                         foreach($city_data as $city): 
                             $name = $city['name']; 
+                            $id = $city['id']; 
                       ?>
-                    <option value="<?=$name?>"><?=$name?></option>
+                    <option value="<?=$id?>"><?=$name?></option>
 
                     <?php endforeach;
                       

@@ -5,12 +5,23 @@ body {
   background-color: #484950;
 
 }
+.pin{
+	width:35px;
+	height: 35px;
+}
+.gohome{
+	margin-top: 40px;
+}
 .weatherFeed {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 90%;
 	
 	color: #ccc;
 
+}
+.key{
+	color: #E0E0D1;
+	
 }
 .days{
 	border-radius: 3px;

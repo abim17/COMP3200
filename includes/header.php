@@ -31,19 +31,26 @@
 
     <nav class="navbar" id="navshape">
  
-        <div class="col-md-8 col-md-offset-1">
+        <div class="col-md-7 col-md-offset-1">
      
              <a id="title" href="index.php">Student traveller</a>
              <!--http://www.iconsdb.com/white-icons/train-icon.html-->
               <img id="icon" src='images/train.png'>
           </div>
-     
-  
-            <div class="col-md-2 col-md-offset-1">
-                <h4>Hometown changed?</h4>
-                   <a class="btn btn-default" href='chooseCity.php'>Change hometown</a>  
+             <div class="col-md-2">
+              <?php
+              if(isset($_COOKIE['homeCity'])){
+                print('<a type="button" href="index.php" class="gohome btn btn-default" >Back to map</a>');
+              }?>
+           
+         </div>
+            <div class="col-md-2 ">
+               <?php
+              if(isset($_COOKIE['homeCity'])){
+                print('<h4>Hometown changed?</h4>
+                   <a class="btn btn-default" href="chooseCity.php">Change hometown</a>  ');
+              }?>
             </div>
-     
     </nav>
 
     <div class="content">
