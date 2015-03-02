@@ -16,26 +16,25 @@ function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oa
 
 $connection = getConnectionWithAccessToken($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
 
-$tweets = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q=tomorrow+AND+event+AND+<?=$city->name?>&result_type=recent&count=2");
+$tweets = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q=tomorrow+AND+<?=$city->name?>&result_type=recent&count=2");
 $tweets1 = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q=weekend+AND+<?=$city->name?>&result_type=recent&count=2");
 
  echo "   <div class='col-md-4'><div class='bubble'><h3>Tomorrow</h3>";
 for ($i = 0; $i < 2; $i++) {
  
  $text = (json_encode($tweets->statuses[$i]->text));
- $pieces = explode("http", $text);
- echo $pieces[0];
- echo '"<br><br>';
+ echo ($text.' - ');
+ echo substr(json_encode($tweets->statuses[$i]->created_at),5,12);
+ echo '<br><br>';
 }
- echo "</div></div><div class='col-md-4 text-center'><h2>Twitter trends</h2><img src='images/student.png'></div><div class='col-md-4'><div class='bubble'><h3>This weekend</h3>";
+ echo "</div></div><div class='col-md-4 text-center'><h2>Twitter trends</h2><img src='images/student.png'></div><div class='col-md-4'><div class='bubble'><h3>The weekend</h3>";
 
 for ($i = 0; $i < 2; $i++) {
  
  $text = (json_encode($tweets1->statuses[$i]->text));
- $pieces = explode("http", $text);
- echo $pieces[0];
-
-  echo '"<br><br>';
+ echo ($text.' - ');
+ echo substr(json_encode($tweets->statuses[$i]->created_at),5,12);
+ echo '<br><br>';
 
 }
 

@@ -18,22 +18,15 @@
     var request = {
       location: lat,
       radius: 10000,
+      minprice: 4,
+      //https://developers.google.com/places/documentation/supported_types
       query: ['entertainment']
+
     };
     infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
     service.textSearch(request, callback);
-    var requestDet = {
-      placeId: 'ChIJb9gysLF2dEgR81lqnq80s_Q'
-    };
-
-    service.getDetails(requestDet, callback1);
-
-    function callback1(place, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        console.log(place);
-      }
-    }
+   
   }
 
   function callback(results, status) {
@@ -50,17 +43,10 @@
           '<div class="banner">'+ img + '<div class="label"> <div class="title activities">'
           + results[i].name 
           + '</div><div class="activities price">of 5<span>'+results[i].rating+'</span></div><br><button class="btn btn-default" onclick="clicked('+"'"+i+"a'"+')">Learn More</button></div></div><div class="vis activities" id="'+i+'a">'+results[i].formatted_address+'</div></div>';
-          /*<dl class="left wordwrap dl-horizontal"><dt>Rating</dt><dd>This attraction has been rated '
-          +results[i].rating+' out of a possible 5.</dd> <dt>Address</dt><dd>'
-          +results[i].formatted_address+'</dd><dt>Type</dt><dd>'
-          +results[i].types+'</dd></dl></div>'+
-          '<dt>Photos</dt><dd>'
-          +'<img src="'+results[i].photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200})+'">'
-          +'</dd>'*/
+       
          
         }
-        //get extra details
-        //console.log(results[i]);
+       
         
       }
       html += '';  

@@ -67,30 +67,20 @@ require('includes/header.php'); ?>
             require('partials/rating.php'); 
             for($i = 1; $i <= $ratingScore; $i++){
                 $rating = $rating."<img src='images/star.png' class='rating'>";
-                    //echo('<img src="images/star.png" class="rating">');
-                    //http://png-1.findicons.com/files/icons/2166/oxygen/48/rating.png
-
                   }
             $rating = substr($rating, 1);
            
-         
-            $tweets = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q=tomorrow+AND+event+AND+<?=$city->name?>&result_type=recent&count=2");
+            $tweets = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q==tomorrow+AND+<?=$city->name?>&result_type=recent&count=2");
             $tweets1 = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q=weekend+AND+<?=$city->name?>&result_type=recent&count=2");
 
             $text = (json_encode($tweets->statuses[0]->text));
-            if(strpos($text, 'http') !== FALSE){
-                $break = explode("http", $text);
-                $text = $break[0];
-             }
-             $text = explode('"', $text);
+            $text = explode('"', $text);
+            
+            $datecreated = substr(json_encode($tweets->statuses[0]->created_at),5,12);
           
             $text1 = (json_encode($tweets1->statuses[0]->text));
-            if(strpos($text1, 'http') !== FALSE){
-                $break = explode("http", $text1);
-                $text1 = $break[0];
-                     }
-                             
-              $text1 = explode('"', $text1);                                    
+            $text1 = explode('"', $text1);   
+            $datecreated1 = substr(json_encode($tweets1->statuses[0]->created_at),5,12);                                 
 
                         
             ?>
@@ -107,7 +97,10 @@ require('includes/header.php'); ?>
             <?php endif; ?>
             });
             //content displayed when the info window pops up
-            var contentString = "<h3><?=$name?> <?=$rating?></h3><p>Talk about tomorrow: <?=$text[1]?></p><p>Talk about the weekend: <?=$text1[1]?></p><a class='btn btn-default' id='moreInfo' href='moreinfo.php?id=<?=$id?>'>Find out more</a>";
+            var contentString = "<div class='col-md-4'><img src='<?=$city->img?>' class='imagepopup'></div>"
+            +"<div class='col-md-8'><h3><?=$name?> <?=$rating?></h3>"
+            +"<p>Talk about tomorrow from <?=$datecreated?>: <?=$text[1]?></p><p>Talk about the weekend from <?=$datecreated1?>: <?=$text1[1]?></p>"
+            +"<a class='btn btn-default' id='moreInfo' href='moreinfo.php?id=<?=$id?>'>Find out more</a></div>";
 
 
             var <?=$info?> = new google.maps.InfoWindow({

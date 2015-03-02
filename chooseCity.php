@@ -32,12 +32,9 @@ require('includes/header.php');
           <div class="col-md-4 description">
                <p>STEP 1</p>Begin by selecting you home city from the dropdown on the right. Nice and easy!
           </div>
-          <div class="col-md-3">
-           <!-- http://icons.iconarchive.com/icons/gakuseisean/ivista-2/256/Alarm-Arrow-Right-icon.png -->
-           <img class="easysteps" src="images/arrow.png">
-          </div>
+         
         
-         <div class="col-md-3">
+         <div class="col-md-5">
           <div class="col-md-12">
             <h3>Select your city</h3>
           </div>
@@ -66,7 +63,7 @@ require('includes/header.php');
        <div class="col-md-11 col-md-offset-1 text-center">
       
              <div class="col-md-4 description">
-                   <p>STEP 2</p>Choose where you want to visit by clicking on the different pins adn selecting 'Find out more'
+                   <p>STEP 2</p>Choose where you want to visit by clicking on the different pins and find out information like what people are talking about. If your interested in visiting, select 'Find out more'
             </div>
             <div class="col-md-6">
              
@@ -76,7 +73,8 @@ require('includes/header.php');
          
           <div class="row">
             <div class="col-md-4 description">
-                 <p>STEP 3</p>You can then select the time and day you want to leave to get train times and weather details to the place you want to go
+                 <p>STEP 3</p>On this page you can view more in depth information about the city, such as attractions and descriptions. <br>You can then select the time and day you want to leave to get train times to the place you want to go for any city that is not your hometown.
+                  If you have visited the city before, select the rate button and use the radio buttons to submit your rating.
             </div>
             <div class="col-md-6">
              <img  class="easysteps" src="images/step3.PNG">

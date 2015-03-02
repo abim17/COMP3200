@@ -5,6 +5,10 @@ body {
   background-color: #484950;
 
 }
+.imagepopup{
+	height:250px;
+	width:180px;
+}
 .pin{
 	width:35px;
 	height: 35px;
@@ -181,7 +185,7 @@ text-indent:-99999px
 	margin-top: 30px;
 }
 .rate{
-	width:70%;
+	width:300px;
 }
 .description{
 	background-color: #484950;

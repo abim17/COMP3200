@@ -114,7 +114,7 @@ $city = $city->fetch_object('City')?>
           </div>
           <div class="col-md-5 col-md-offset-1">
             
-            <a class="btn btn-default btn-lg rate" onclick="rate()">Rate <?=$city->name?></a>
+            <a class="btn btn-default btn-lg rate" onclick="rate()">Visited already? Rate <?=$city->name?></a>
               <?php
                 
                 if(isset($_SESSION['rated'])){
