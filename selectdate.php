@@ -13,33 +13,40 @@ if(!isset($_COOKIE['homeCity'])&&!is_numeric($_COOKIE['homeCity'])){
          header('Location: chooseCity.php');
      }
      else{
- 		$cookie = $cookie->fetch_object('City');
+     	try{
+     		if(!isset($_POST['datepicker']) OR !isset($_POST['time']) OR !isset ($_POST['to'])) throw new Exception('This is an invalid form entry');
+	 		
+	 		//gets the name of the city with the city number in the cookie
+	 		$cookie = $cookie->fetch_object('City');
 
-		$pieces = explode("/", $_POST['datepicker']);
-		$year = substr($pieces[2], 2, 3);
-		$hour = substr($_POST['time'], 0,2);
-		$min = substr($_POST['time'], 2,2);
-		$todaymonth1 = date("m", strtotime("+1 month"));
-		$todayday = date("d");
-		$todaymonth = date("m");
-		$todayyear = date('y');
-		$time = $hour.':'.$min;
+	 		//processes the data recieved from the post for the final train url
+			$pieces = explode("/", $_POST['datepicker']);
+			$year = substr($pieces[2], 2, 3);
+			$hour = substr($_POST['time'], 0,2);
+			$min = substr($_POST['time'], 2,2);
+			$todaymonth1 = date("m", strtotime("+1 month"));
+			$todayday = date("d");
+			$todaymonth = date("m");
+			$todayyear = date('y');
+			$time = $hour.':'.$min;
 
+			//checks to make sure the times and dates are valid for Natonal Rail
+			if($year!==$todayyear || !strtotime($time)) throw new Exception('You selected a date that was not this year or an invalid time. Please select again');
+			if($pieces[0]!==$todaymonth && $pieces[0]!==$todaymonth1) throw new Exception('Please select a month within '.$todaymonth.' or '.$todaymonth1);
+			if($pieces[0]==$todaymonth && $pieces[1]<$todayday)  throw new Exception('This date is in the past. Please select a valid date');
 
-		if($year!==$todayyear || !strtotime($time)){
-			$_SESSION['dateselected']='<script>alert("You selected a date that was not this year or an invalid time. Please select again");</script>';
-			header('Location: moreinfo.php?id='.$_POST["city"]);
-		}else if($pieces[0]!==$todaymonth && $pieces[0]!==$todaymonth1){
-			$_SESSION['dateselected']='<script>alert("Please select a month within '.$todaymonth.' or '.$todaymonth1.'");</script>';
-			header('Location: moreinfo.php?id='.$_POST["city"]);
-		}else if($pieces[0]==$todaymonth && $pieces[1]<$todayday){
-			$_SESSION['dateselected']='<script>alert("This date is in the past. Please select a valid date");</script>';
-			header('Location: moreinfo.php?id='.$_POST["city"]);
-		}else{
 			$_SESSION['dateselected']='true';
 			$_SESSION['train']='http://ojp.nationalrail.co.uk/service/timesandfares/'.$cookie->name.'/'.$_POST['to'].'/'.$pieces[1].$pieces[0].$year.'/'.$_POST['time'].'/dep';
 			header('Location: moreinfo.php?id='.$_POST["city"]);
+			
+		}catch(Exception $e){
+		
+		//if the review upload to database fails, this message is passed back as a session to filmpage.php
+		$_SESSION['dateselected'] ='<script>alert("'.$e->getMessage().'");</script>';
+		header('Location: moreinfo.php?id='.$_POST["city"]);
+		
 		}
+
   	}
  }
 ?>

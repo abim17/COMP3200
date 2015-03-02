@@ -19,7 +19,7 @@
      <link href="css/skeleton.css" rel="stylesheet">
     <script src="js/bootstrap.min.js">
    </script>
-  
+    <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
 
   <body>

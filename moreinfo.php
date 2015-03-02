@@ -123,13 +123,14 @@ $city = $city->fetch_object('City')?>
                     unset($_SESSION['rated']);
                   }
                  ?>
-            <form name="myform" class="vis" id="rate" action="rate.php" method="POST">
+              <form name="myform" class="vis" id="rate" action="rate.php" method="POST">
                 <input type="radio" name="rate" value="1" checked>1
                 <input type="radio" name="rate" value="2">2
                 <input type="radio" name="rate" value="3">3
                 <input type="radio" name="rate" value="4">4
                 <input type="radio" name="rate" value="5">5
                 <input type="hidden" name="city" value="<?=$city->id?>">
+                <div class="g-recaptcha" data-sitekey="6Lfs2QITAAAAAOjIrg3A2k1ZdclwSu4osw78MZ6Y"></div>
                 <input class="btn btn-default" type="submit" value="submit">
               </form>
                
