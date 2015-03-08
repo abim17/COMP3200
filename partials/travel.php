@@ -18,7 +18,7 @@
     var request = {
       location: lat,
       radius: 10000,
-      minprice: 4,
+      maxprice: 2,
       //https://developers.google.com/places/documentation/supported_types
       query: ['entertainment']
 

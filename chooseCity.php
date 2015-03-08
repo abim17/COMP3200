@@ -13,15 +13,13 @@ require('includes/header.php');
        
   <div class="jumbotron"> 
     <?php 
-                    if(isset($_SESSION['error'])){
-                      echo('<div class="text-center alert alert-danger">'.$_SESSION['error'].'</div>');
-                      
-                      unset($_SESSION['error']);
-                    }
-
-
-                    ?>
-          <h2 class="text-center">Making travel easy</h2>
+    if(isset($_SESSION['error'])){
+      echo('<div class="text-center alert alert-danger">'.$_SESSION['error'].'</div>');
+      
+      unset($_SESSION['error']);
+    }
+    ?>
+    <h2 class="text-center">Making travel easy</h2>
       
     <div class="row">
       <div class="col-md-6 col-md-offset-1">

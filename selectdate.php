@@ -19,8 +19,10 @@ if(!isset($_COOKIE['homeCity'])&&!is_numeric($_COOKIE['homeCity'])){
 	 		//gets the name of the city with the city number in the cookie
 	 		$cookie = $cookie->fetch_object('City');
 
-	 		//processes the data recieved from the post for the final train url
-			$pieces = explode("/", $_POST['datepicker']);
+	 		
+	 		$date = preg_replace( "/[^0-9_]\//", "",  $_POST['datepicker']);
+			$pieces = explode("/", $date);
+			if(count($pieces)!==3 OR !is_numeric($pieces[0])  OR !is_numeric($pieces[1])  OR !is_numeric($pieces[2])) throw new Exception('The date you entered is invalid');
 			$year = substr($pieces[2], 2, 3);
 			$hour = substr($_POST['time'], 0,2);
 			$min = substr($_POST['time'], 2,2);

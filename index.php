@@ -10,22 +10,14 @@ require('includes/header.php'); ?>
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKNLzBPpD3hKCpe78Fhq9ZQLui9U8yVl8">
     </script>
     <?php 
-    if(!isset($_COOKIE['homeCity'])&&!is_numeric($_COOKIE['homeCity'])){
-        $_SESSION['error']='Please select a valid city as your hometown';
-        header('Location: chooseCity.php');
-    }else{
-        $cookie = $data->query('SELECT * FROM city WHERE id = '.$_COOKIE['homeCity']); 
-        if($cookie->num_rows==0){
-           $_SESSION['error']='Please select a valid city as your hometown';
-           header('Location: chooseCity.php');
-       }
-    }
+   include('includes/homeCitySet.php');
    $query = $data->query("SELECT * FROM city"); 
    $city_data = array();
    while($city = $query->fetch_assoc()): 
         $city_data[] = $city; 
     endwhile;
-    require('partials/twittermap.php'); 
+    //one connection for all cities
+    require('includes/twitterconn.php'); 
     ?>
   
     <style type="text/css">
@@ -64,15 +56,14 @@ require('includes/header.php'); ?>
             $id = $citymark['id'];
             $city = $data->query('SELECT * FROM city WHERE id = '.$citymark['id'])->fetch_object('City');
             $rating;
-            require('partials/rating.php'); 
+            require('includes/rating.php'); 
             for($i = 1; $i <= $ratingScore; $i++){
                 $rating = $rating."<img src='images/star.png' class='rating'>";
                   }
             $rating = substr($rating, 1);
-           
-            $tweets = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q==tomorrow+AND+<?=$city->name?>&result_type=recent&count=2");
-            $tweets1 = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q=weekend+AND+<?=$city->name?>&result_type=recent&count=2");
-
+            
+            require('includes/twitter.php'); 
+                                    
             $text = (json_encode($tweets->statuses[0]->text));
             $text = explode('"', $text);
             
@@ -80,8 +71,7 @@ require('includes/header.php'); ?>
           
             $text1 = (json_encode($tweets1->statuses[0]->text));
             $text1 = explode('"', $text1);   
-            $datecreated1 = substr(json_encode($tweets1->statuses[0]->created_at),5,12);                                 
-
+            $datecreated1 = substr(json_encode($tweets1->statuses[0]->created_at),5,12); 
                         
             ?>
             //creating each cities marker and pop up box

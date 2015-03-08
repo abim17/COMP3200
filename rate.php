@@ -15,8 +15,8 @@ try{
 		
         $stmt = $data->prepare("INSERT INTO cityRatings (rating, cityId) VALUES (?, ?)");
 		$stmt->bind_param("ii", $rating, $city);
-
 		$stmt->execute();
+		
 		$_SESSION['rated']='<div class="alert alert-success rate">Rating Successful</div>';
 
 		header('Location: moreinfo.php?id='.$_POST["city"]);

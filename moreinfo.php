@@ -2,16 +2,7 @@
 session_start();
 require('includes/header.php'); 
 require_once("classes/city.class.php");  
-if(!isset($_COOKIE['homeCity'])&&!is_numeric($_COOKIE['homeCity'])){
-      $_SESSION['error']='Please select a valid city as your hometown';
-      header('Location: chooseCity.php');
-  }else{
-      $cookie = $data->query('SELECT * FROM city WHERE id = '.$_COOKIE['homeCity']); 
-      if($cookie->num_rows==0){
-         $_SESSION['error']='Please select a valid city as your hometown';
-         header('Location: chooseCity.php');
-     }
-  }
+include('includes/homeCitySet.php');
 
 if(!is_numeric($_GET['id'])){
      $_SESSION['error']='Invalid city entered';
@@ -32,7 +23,7 @@ $city = $city->fetch_object('City')?>
         <div class="text-center">
 
           <h2><?=$city->name?></h2>
-        <?php require('partials/rating.php'); 
+        <?php require('includes/rating.php'); 
         for($i = 1; $i <= $ratingScore; $i++){
                 echo('<img src="images/star.png" class="rating">');
                 //http://png-1.findicons.com/files/icons/2166/oxygen/48/rating.png
@@ -169,7 +160,27 @@ $city = $city->fetch_object('City')?>
 
       <div class="container_12">
      
-          <?php include('partials/twitter.php'); 
+          <?php 
+          include('includes/twitterconn.php'); 
+          include('includes/twitter.php'); 
+          echo "   <div class='col-md-4'><div class='bubble'><h3>Tomorrow</h3>";
+          for ($i = 0; $i < 2; $i++) {
+           
+           $text = (json_encode($tweets->statuses[$i]->text));
+           echo ($text.' - ');
+           echo substr(json_encode($tweets->statuses[$i]->created_at),5,12);
+           echo '<br><br>';
+          }
+           echo "</div></div><div class='col-md-4 text-center'><h2>Twitter trends</h2><img src='images/student.png'></div><div class='col-md-4'><div class='bubble'><h3>The weekend</h3>";
+
+          for ($i = 0; $i < 2; $i++) {
+           
+           $text = (json_encode($tweets1->statuses[$i]->text));
+           echo ($text.' - ');
+           echo substr(json_encode($tweets->statuses[$i]->created_at),5,12);
+           echo '<br><br>';
+
+          }
           //http://img1.wikia.nocookie.net/__cb20130401132639/warriorcatclansrp/images/3/3f/Illustration_of_a_cartoon_speech_bubble.png
           ?>
 
