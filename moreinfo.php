@@ -23,30 +23,22 @@ $city = $city->fetch_object('City')?>
         <div class="text-center">
 
           <h2><?=$city->name?></h2>
-        <?php require('includes/rating.php'); 
-        for($i = 1; $i <= $ratingScore; $i++){
+        <?php require('includes/rating.php');
+        if($ratingScore>0){
+           for($i = 1; $i <= $ratingScore; $i++){
                 echo('<img src="images/star.png" class="rating">');
                 //http://png-1.findicons.com/files/icons/2166/oxygen/48/rating.png
-
-              }?>
-         <script>
-          function validateForm() {
-              var x = document.forms["myForm"]["time"].value;
-              var y = document.forms["myForm"]["datepicker"].value;
-              if (x == null || x == "" || isNaN(x) || x.length !== 4) {
-                  alert("Please enter a valid departure time");
-                  return false;
-              }else if(y == null || y == "" || y.length !== 10){
-                  alert("Please enter a valid date");
-                  return false;
               }
-          }
-          </script>
+        }
+       ?>
+        <script src="js/validateForm.js"></script>
         </div>
         <?php if($_COOKIE['homeCity']!==$city->id):?>
-          <form class="form-inline" method="post" name="myForm" action="selectdate.php" onsubmit="return validateForm()">
-                <br>
-                <div class="col-md-3 col-md-offset-2">
+          <form class="form-inline form col-md-offset-2 col-md-8" method="post" name="myForm" action="selectdate.php" onsubmit="return validateForm(document.forms['myForm']['time'].value,document.forms['myForm']['datepicker'].value)">
+              
+                  <h3>Train times</h3>
+                
+                <div class="col-md-4">
                  
                   <label>Departure date</label>
                   <input id="datepicker" placeholder="Within this or next month" class="form-control" name="datepicker"></input>
@@ -54,7 +46,7 @@ $city = $city->fetch_object('City')?>
                   $( "#datepicker" ).datepicker();
                   </script>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                 
                   <label>Departure time</label>
                   <input type="text" class="form-control" name="time" placeholder="e.g. 0900">
@@ -63,7 +55,7 @@ $city = $city->fetch_object('City')?>
                   <input type="hidden" name="to" value="<?=$city->name?>">
                   <input type="hidden" name="city" value="<?=$city->id?>">
                   <br>
-                  <button type="submit" class="btn btn-default">I want to visit</button>
+                  <button type="submit" class="btn btn-primary">Find me trains</button>
                 
                     <br>
                     <?php 
@@ -105,7 +97,7 @@ $city = $city->fetch_object('City')?>
           </div>
           <div class="col-md-5 col-md-offset-1">
             
-            <a class="btn btn-default btn-lg rate" onclick="rate()">Visited already? Rate <?=$city->name?></a>
+            <a class="btn btn-primary rate" onclick="rate()">Rate <?=$city->name?></a>
               <?php
                 
                 if(isset($_SESSION['rated'])){
@@ -114,7 +106,7 @@ $city = $city->fetch_object('City')?>
                     unset($_SESSION['rated']);
                   }
                  ?>
-              <form name="myform" class="vis" id="rate" action="rate.php" method="POST">
+              <form name="myform" class="vis form" id="rate" action="rate.php" method="POST">
                 <input type="radio" name="rate" value="1" checked>1
                 <input type="radio" name="rate" value="2">2
                 <input type="radio" name="rate" value="3">3
@@ -122,7 +114,7 @@ $city = $city->fetch_object('City')?>
                 <input type="radio" name="rate" value="5">5
                 <input type="hidden" name="city" value="<?=$city->id?>">
                 <div class="g-recaptcha" data-sitekey="6Lfs2QITAAAAAOjIrg3A2k1ZdclwSu4osw78MZ6Y"></div>
-                <input class="btn btn-default" type="submit" value="submit">
+                <input class="btn btn-primary" type="submit" value="submit">
               </form>
                
                <script>
@@ -146,13 +138,11 @@ $city = $city->fetch_object('City')?>
       <?php include('partials/travel.php'); ?>
 
       <script>
-
-
-   function clicked(results){
-        var toggle = "#"+results;
-        console.log(toggle);
-         $(toggle).toggle();
-      }
+     function clicked(results){
+          var toggle = "#"+results;
+          console.log(toggle);
+           $(toggle).toggle();
+        }
       </script>
     </div>
    

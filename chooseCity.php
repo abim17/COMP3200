@@ -54,7 +54,7 @@ require('includes/header.php');
                    ?>
                 </select>
             </div>
-              <input class="btn btn-default col-md-3" type="submit" value="submit">
+              <input class="btn btn-primary col-md-3" type="submit" value="submit">
             </form>
           </div>
       </div>

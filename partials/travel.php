@@ -42,7 +42,7 @@
           html += '<div class="grid_4">' +
           '<div class="banner">'+ img + '<div class="label"> <div class="title activities">'
           + results[i].name 
-          + '</div><div class="activities price">of 5<span>'+results[i].rating+'</span></div><br><button class="btn btn-default" onclick="clicked('+"'"+i+"a'"+')">Learn More</button></div></div><div class="vis activities" id="'+i+'a">'+results[i].formatted_address+'</div></div>';
+          + '</div><div class="activities price">of 5<span>'+results[i].rating+'</span></div><br><button class="btn btn-primary" onclick="clicked('+"'"+i+"a'"+')">Learn More</button></div></div><div class="vis activities" id="'+i+'a">'+results[i].formatted_address+'</div></div>';
        
          
         }

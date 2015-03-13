@@ -40,7 +40,7 @@
              <div class="col-md-2">
               <?php
               if(isset($_COOKIE['homeCity'])){
-                print('<a type="button" href="index.php" class="gohome btn btn-default" >Back to map</a>');
+                print('<a type="button" href="index.php" class="gohome btn btn-warning" >Back to map</a>');
               }?>
            
          </div>
@@ -48,7 +48,7 @@
                <?php
               if(isset($_COOKIE['homeCity'])){
                 print('<h4>Hometown changed?</h4>
-                   <a class="btn btn-default" href="chooseCity.php">Change hometown</a>  ');
+                   <a class="btn btn-warning" href="chooseCity.php">Change hometown</a>  ');
               }?>
             </div>
     </nav>
