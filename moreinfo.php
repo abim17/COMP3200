@@ -157,20 +157,37 @@ $city = $city->fetch_object('City')?>
           for ($i = 0; $i < 2; $i++) {
            
            $text = (json_encode($tweets->statuses[$i]->text));
-           echo ($text.' - ');
-           echo substr(json_encode($tweets->statuses[$i]->created_at),5,12);
+           require('includes/twitterValidation.php'); 
+           
+          echo substr(json_encode($tweets->statuses[$i]->created_at),5,12);
+            echo (" - ".$pieces[1]."<br>");
+           
+           if($link!==null){
+                echo("<a target='_new' href='".$link[0]."'>".$link[0]."</a> ");
+                echo($link[1]);
+            } 
+           //echo ($text.' - ');
+           //echo substr(json_encode($tweets->statuses[$i]->created_at),5,12);
            echo '<br><br>';
+
           }
-           echo "</div></div><div class='col-md-4 text-center'><h2>Twitter trends</h2><img src='images/student.png'></div><div class='col-md-4'><div class='bubble'><h3>The weekend</h3>";
+           echo "<a target='_new' class='btn btn-primary' href='https://twitter.com/search?q=tomorrow%20".$city->name."&src=typd&lang=en'>Find out more on Twitter</a></div></div><div class='col-md-4 text-center'><h2>Twitter trends</h2><img src='images/student.png'></div><div class='col-md-4'><div class='bubble'><h3>The weekend</h3>";
 
           for ($i = 0; $i < 2; $i++) {
            
-           $text = (json_encode($tweets1->statuses[$i]->text));
-           echo ($text.' - ');
-           echo substr(json_encode($tweets->statuses[$i]->created_at),5,12);
-           echo '<br><br>';
+             $text = (json_encode($tweets1->statuses[$i]->text));
+            require('includes/twitterValidation.php'); 
+             echo substr(json_encode($tweets1->statuses[$i]->created_at),5,12);
+             echo (" - ".$pieces[1]."<br>");
+             
+             if($link!==null){
+                  echo("<a target='_new' href='".$link[0]."'>".$link[0]."</a> ");
+                  echo($link[1]);
+              } 
+             echo '<br><br>';
 
           }
+          echo "<a target='_new' class='btn btn-primary' href='https://twitter.com/search?q=weekend%20".$city->name."&src=typd&lang=en'>Find out more on Twitter</a>";
           //http://img1.wikia.nocookie.net/__cb20130401132639/warriorcatclansrp/images/3/3f/Illustration_of_a_cartoon_speech_bubble.png
           ?>
 

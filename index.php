@@ -68,12 +68,24 @@ require('includes/header.php'); ?>
                 require('includes/twitter.php'); 
                                         
                 $text = (json_encode($tweets->statuses[0]->text));
-                $text = explode('"', $text);
-                
+                  require('includes/twitterValidation.php'); 
+   
                 $datecreated = substr(json_encode($tweets->statuses[0]->created_at),5,12);
               
                 $text1 = (json_encode($tweets1->statuses[0]->text));
-                $text1 = explode('"', $text1);   
+                        $pieces1 = null;
+                     $link1 = null;
+                     if(strpos($text1,'https:') == true){
+                        $link1 = explode("https:", $text1 );
+                        $pieces1 = explode('"', $link1[0] );
+                     
+                     }else if(strpos($text1,'http:') == true){
+                        $link1 = explode("http:", $text1 );
+                        $pieces1 = explode('"', $link1[0] );
+                    
+                     }else{
+                       $pieces1 = explode('"', $text1 );
+                     }
                 $datecreated1 = substr(json_encode($tweets1->statuses[0]->created_at),5,12); 
                             
                 ?>
@@ -92,7 +104,7 @@ require('includes/header.php'); ?>
                 //content displayed when the info window pops up
                 var contentString = "<div class='col-md-4'><img src='<?=$city->img?>' class='imagepopup'></div>"
                 +"<div class='col-md-8'><h3><?=$name?> <?=$ratings?></h3>"
-                +"<p>Talk about tomorrow from <?=$datecreated?>: <?=$text[1]?></p><p>Talk about the weekend from <?=$datecreated1?>: <?=$text1[1]?></p>"
+                +"<p>Talk about tomorrow from <?=$datecreated?>: <?=$pieces[1]?></p><p>Talk about the weekend from <?=$datecreated1?>: <?=$pieces1[1]?></p>"
                 +"<a class='btn btn-primary' id='moreInfo' href='moreinfo.php?id=<?=$id?>'>Find out more</a></div>";
 
 
