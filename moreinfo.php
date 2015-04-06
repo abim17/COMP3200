@@ -1,5 +1,6 @@
 <?php 
 session_start();
+
 require('includes/header.php'); 
 require_once("classes/city.class.php");  
 include('includes/homeCitySet.php');
@@ -59,14 +60,17 @@ $city = $city->fetch_object('City')?>
                 
                     <br>
                     <?php 
-                    if(isset($_SESSION['dateselected'])&& $_SESSION['dateselected']=='true'){
-                      echo('<a target="_blank" href="'.$_SESSION['train'].'"class="btn btn-success" type="submit">Check national rail</a>');
+                    if(isset($_SESSION['dateselected'])&& $_SESSION['dateselected']=='true'):?>
+                      <script>window.onload = function() {
+                           window.open("<?=$_SESSION['train']?>");
+                        }</script>
+                      <a target="_blank" href="'.$_SESSION['train'].'"class="btn btn-success" type="submit">Link didn't load? Click here</a>
                       
-                      unset($_SESSION['dateselected']);
-                    }else if(isset($_SESSION['dateselected'])){
+                      <?php unset($_SESSION['dateselected']);
+                    elseif(isset($_SESSION['dateselected'])):
                        echo($_SESSION["dateselected"]);
                         unset($_SESSION['dateselected']);
-                    }
+                    endif;
 
 
                     ?>
